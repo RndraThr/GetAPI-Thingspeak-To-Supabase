@@ -1,0 +1,16 @@
+[Unit]
+Description=ThingSpeak Data Fetcher
+After=network.target
+
+[Service]
+EnvironmentFile=/opt/my_thingspeak_project/config/settings.env
+ExecStart=/usr/bin/python3 /opt/my_thingspeak_project/src/main.py
+WorkingDirectory=/opt/my_thingspeak_project/
+StandardOutput=append:/opt/my_thingspeak_project/logs/app.log
+StandardError=append:/opt/my_thingspeak_project/logs/app.log
+Restart=always
+User=your_linux_user
+Group=your_linux_group
+
+[Install]
+WantedBy=multi-user.target

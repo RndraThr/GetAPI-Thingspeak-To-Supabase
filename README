@@ -1,0 +1,18 @@
+Set Permission if needed
+"chmod +x /opt/my_thingspeak_project/scripts/backup.sh"
+
+Setup Layanan systemd:
+Salin file my_thingspeak.service ke /etc/systemd/system/:
+"sudo cp /opt/my_thingspeak_project/service/my_thingspeak.service /etc/systemd/system/"
+
+
+sudo systemctl daemon-reload
+sudo systemctl enable my_thingspeak.service
+sudo systemctl start my_thingspeak.service
+
+Tambahkan cron job untuk mencadangkan data:
+crontab -e
+
+
+Tambahkan baris berikut untuk menjalankan backup setiap hari pukul 12 malam:
+0 0 * * * /opt/my_thingspeak_project/scripts/backup.sh
